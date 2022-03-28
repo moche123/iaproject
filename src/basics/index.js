@@ -242,7 +242,7 @@ export function Casilla(x, y) {
 
 export function inicializa() {
     iniVariables();
-    fetch('mongodb+srv://leysiaurich15:unprgia2022@cluster0.hxy7q.mongodb.net/ProyectoIA?retryWrites=true&w=majority')
+    fetch('http://localhost:4000/api/obstacle/all')
         .then(response => response.json())
         .then(data => {
             canvas = document.getElementById('canvas');
