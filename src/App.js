@@ -1,8 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Routes, Route, Link, useParams } from "react-router-dom";
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import { inicializa } from './basics/index.js';
 
 
@@ -51,14 +49,17 @@ function DataView() {
 
 function MainView() {
   
-  inicializa();
+  function inic(){
+
+    inicializa();
+  }
   
 
 
   return (
     <div className="App-header">
 
-
+      <button onClick={inic}></button>
       <canvas id='canvas' width='500' height='500'></canvas>
 
       

@@ -25,33 +25,35 @@ var closedSet = [];
 
 var camino = [];
 var terminado = false;
+var interval;
 
 
-export function iniVariables(){
-    canvas = null;
-    ctx = null;
-    FPS = 150;
+export function iniVariables() {
 
-    //ESCENARIO / TABLERO
-    columnas = 16;
-    filas = 16;
-    escenario = null;  //matriz del nivel
+
+    escenario = [];
 
     //TILES
-    anchoT = null;
-    altoT = null;
- 
-    
+    anchoT = 0;
+    altoT = 0;
+
+
+
 
     //RUTA
-    principio = null;
-    fin = null;
+    principio = undefined;
+    fin = undefined;
 
+    
     openSet = [];
     closedSet = [];
-
     camino = [];
+  
+
     terminado = false;
+    clearInterval(interval);
+
+
 }
 
 //CREAMOS UN ARRAY 2D
@@ -77,7 +79,7 @@ export function heuristica(a, b) {
 
 export function borraDelArray(array, elemento) {
     for (let i = array.length - 1; i >= 0; i--) {
-        if (array[i] == elemento) {
+        if (array[i] === elemento) {
             array.splice(i, 1);
         }
     }
@@ -121,10 +123,10 @@ export function Casilla2(x, y, tipo) {
     this.dibuja = function () {
         var color;
 
-        if (this.tipo == 0)
+        if (this.tipo === 0)
             color = tierra;
 
-        if (this.tipo == 1)
+        if (this.tipo === 1)
             color = muro;
 
         //DIBUJAMOS EL CUADRO EN EL CANVAS
@@ -167,7 +169,7 @@ export function Casilla(x, y) {
     this.tipo = 0;
 
     var aleatorio = Math.floor(Math.random() * 5);  // 0-4   (2.3.4 : VACIOS)
-    if (aleatorio == 1)
+    if (aleatorio === 1)
         this.tipo = 1;
 
     //PESOS
@@ -200,10 +202,10 @@ export function Casilla(x, y) {
     this.dibuja = function () {
         var color;
 
-        if (this.tipo == 0)
+        if (this.tipo === 0)
             color = tierra;
 
-        if (this.tipo == 1)
+        if (this.tipo === 1)
             color = muro;
 
         //DIBUJAMOS EL CUADRO EN EL CANVAS
@@ -240,7 +242,7 @@ export function Casilla(x, y) {
 
 export function inicializa() {
     iniVariables();
-    fetch('http://localhost:4000/api/obstacle/all')
+    fetch('mongodb+srv://leysiaurich15:unprgia2022@cluster0.hxy7q.mongodb.net/ProyectoIA?retryWrites=true&w=majority')
         .then(response => response.json())
         .then(data => {
             canvas = document.getElementById('canvas');
@@ -259,6 +261,8 @@ export function inicializa() {
                     escenario[i][j] = new Casilla2(j, i, 0)
                 }
             }
+
+
 
 
 
@@ -283,7 +287,7 @@ export function inicializa() {
             openSet.push(principio);
 
             //EMPEZAMOS A EJECUTAR EL BUCLE PRINCIPAL
-            setInterval(() => principal(), 1000 / FPS);
+            interval = setInterval(() => principal(), 1000 / FPS);
         });
 
 }
@@ -291,6 +295,7 @@ export function inicializa() {
 
 
 export function dibujaEscenario() {
+    //console.log(escenario)
     for (let i = 0; i < filas; i++) {
         for (let j = 0; j < columnas; j++) {
             escenario[i][j].dibuja();
@@ -317,10 +322,10 @@ export function dibujaEscenario() {
 }
 
 
-export function borraCanvas() {
-    canvas.width = canvas.width;
-    canvas.height = canvas.height;
-}
+// export function borraCanvas() {
+//     canvas.width = canvas.width;
+//     canvas.height = canvas.height;
+// }
 
 
 
@@ -330,7 +335,7 @@ export function borraCanvas() {
 export function algoritmo() {
 
     //SEGUIMOS HASTA ENCONTRAR SOLUCIÓN
-    if (terminado != true) {
+    if (terminado !== true) {
 
         //SEGUIMOS SI HAY AlGO EN OPENSET
         if (openSet.length > 0) {
@@ -353,7 +358,7 @@ export function algoritmo() {
                 var temporal = actual;
                 camino.push(temporal);
 
-                while (temporal.padre != null) {
+                while (temporal.padre !== null) {
                     temporal = temporal.padre;
                     camino.push(temporal);
                 }
@@ -378,7 +383,7 @@ export function algoritmo() {
                     var vecino = vecinos[i];
 
                     //SI EL VECINO NO ESTÁ EN CLOSEDSET Y NO ES UNA PARED, HACEMOS LOS CÁLCULOS
-                    if (!closedSet.includes(vecino) && vecino.tipo != 1) {
+                    if (!closedSet.includes(vecino) && vecino.tipo !== 1) {
                         var tempG = actual.g + 1;
 
                         //si el vecino está en OpenSet y su peso es mayor
@@ -426,7 +431,7 @@ export function algoritmo() {
 
 
 export function principal() {
-    borraCanvas();
+    // borraCanvas();
     algoritmo();
     dibujaEscenario();
 }
