@@ -282,7 +282,7 @@ export function inicializa() {
             //CREAMOS ORIGEN Y DESTINO DE LA RUTA
             principio = escenario[0][0];
             //fin = escenario[columnas-1][filas-1];
-            fin = escenario[13][12];
+            fin = escenario[7][7];
             //INICIALIZAMOS OPENSET
             openSet.push(principio);
 
