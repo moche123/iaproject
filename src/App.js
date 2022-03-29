@@ -3,9 +3,15 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { inicializa } from './basics/index.js';
 import { useState } from 'react';
-
+import { Button, Col, Container, Row } from 'react-bootstrap';
 
 function App() {
+
+  const [rowOrigin, setrowOrigin] = useState('');
+  const [rowDestiny, setrowDestiny] = useState('');
+  const [choreLogs, setChoreLogs] = useState([]);
+
+ 
 
   return (
 
@@ -19,9 +25,23 @@ function App() {
 
       </nav>
       <Routes>
-        <Route path="/" element={<DataView />} />
-        <Route path="mainview" element={<MainView />} />
-        <Route path="data" element={<DataView />} />
+        <Route path="/" element={<DataView rowOrigin={rowOrigin}
+          rowDestiny={rowDestiny} setrowOrigin={setrowOrigin} setrowDestiny={setrowDestiny} choreLogs={choreLogs} setChoreLogs={setChoreLogs} 
+           />} />
+
+
+
+        <Route path="mainview" element={<MainView rowOrigin={rowOrigin}
+          rowDestiny={rowDestiny} />} />
+
+
+
+
+        <Route path="data" element={<DataView rowOrigin={rowOrigin}
+          rowDestiny={rowDestiny} setrowOrigin={setrowOrigin} setrowDestiny={setrowDestiny} choreLogs={choreLogs} setChoreLogs={setChoreLogs} 
+          />} />
+
+
         <Route path="about" element={<About />} />
 
         <Route path="*" element={<NoRouteFound />} />
@@ -33,29 +53,42 @@ function App() {
   );
 }
 
-function DataView() {
-  const [choreLogs, setChoreLogs] = useState([]);
+function DataView({ rowOrigin, rowDestiny, setrowOrigin, setrowDestiny, choreLogs, setChoreLogs }) {
+  //let obstacles = [];
+
   const addChoreLog = (log) => {
     let logs = [...choreLogs, log];
     setChoreLogs(logs);
   }
+
   return (
     <section>
-      <ChoreForm addChoreLog={addChoreLog} />
-      <ChoreChart chores={choreLogs} />
+      <ChoreForm addChoreLog={addChoreLog} rowOrigin={rowOrigin}
+        rowDestiny={rowDestiny} setrowOrigin={setrowOrigin} setrowDestiny={setrowDestiny} />
+      {/* <ChoreChart chores={choreLogs} /> */}
     </section>
   );
+
+
+
+
+
 }
 
 
-function MainView() {
+function MainView({ rowOrigin, rowDestiny }) {
 
-  // function inic() {
+  let rowInicio = rowOrigin.split(',')[0];
+  let colInicio = rowOrigin.split(',')[1]
+  let rowFinal = rowDestiny.split(',')[0];
+  let colFinal = rowDestiny.split(',')[1];
+  console.log(rowInicio);
+  console.log(colInicio);
+  console.log(rowFinal);
+  console.log(colFinal);
 
-  //   inicializa();
-  // }
 
-  inicializa();
+  inicializa(rowInicio, colInicio, rowFinal, colFinal);
 
 
 
@@ -94,72 +127,143 @@ function NoRouteFound() {
 
 }
 
-function ChoreChart(props) {
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>Chore description</th>
-          <th>Name</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-      {props.chores.map((v, i) => {
-        return <tr key={i}>
-          <th>{v[0]}</th>
-          <th>{v[1]}</th>
-          <th>{v[2]}</th>
-        </tr>
-      })}
-        </tbody>
-    </table>
-  );
-}
+// function ChoreChart(props) {
+//   return (
+//     <table>
+//       <thead>
+//         <tr>
+//           <th>Chore description</th>
+//           <th>Name</th>
+//           <th>Date</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         {props.chores.map((v, i) => {
+//           return <tr key={i}>
+//             <th>{v[0]}</th>
+//             <th>{v[1]}</th>
+//             <th>{v[2]}</th>
+//           </tr>
+//         })}
+//       </tbody>
+//     </table>
+//   );
+// }
 
 
-function ChoreForm({ addChoreLog }) {
-  const [choreDesc, setChoreDesc] = useState('');
-  const [name, setName] = useState('');
-  const [date, setDate] = useState(new Date());
+function ChoreForm({ addChoreLog, rowOrigin, rowDestiny, setrowOrigin, setrowDestiny }) {
+
+
+
+  const [submitValido, setSubmitValido] = useState(false);
+  const [submitValido2, setSubmitValido2] = useState(false);
+  // let submitValido = true;
   const handleSubmit = (e) => {
-    addChoreLog([choreDesc, name, date])
+
+    let valido = true;
     e.preventDefault();
+    fetch('http://localhost:4000/api/obstacle/all')
+    .then(response => response.json())
+    .then(data => {
+  
+      data.forEach(element => {
+        console.log(element.posx,element.posy);
+        if(
+
+          (
+            element.posx == 16-rowOrigin.split(',')[0] && element.posy == rowOrigin.split(',')[1]
+          
+          ) ||
+          (
+            element.posx == 16-rowDestiny.split(',')[0] && element.posy == rowDestiny.split(',')[1]
+          )
+          
+          ){
+            console.log('match'+element.posx,element.posy);
+          valido = false;
+        }
+      })
+
+      if(valido){
+        setSubmitValido(true)
+        addChoreLog([rowOrigin, rowDestiny])
+   
+      }else{
+        setSubmitValido(false)
+        e.preventDefault();
+      }
+  
+  
+    })
+
+    
   }
 
   return (
     <form onSubmit={e => { handleSubmit(e) }}>
-      <label>Chore description:</label>
+      <label>Coordenada de origen:</label>
       <br />
       <input
-        name='choreDesc'
+        name='rowOrigin'
         type='text'
-        value={choreDesc}
-        onChange={e => setChoreDesc(e.target.value)}
+        value={rowOrigin}
+        onChange={e => {
+          setrowOrigin(e.target.value)
+          if (e.target.value.split(',').length > 1 && e.target.value.split(',')[1].length>0 && !isNaN(e.target.value.split(',')[0])) {
+            setSubmitValido(true)
+          }else{
+            setSubmitValido(false)
+          }
+        }
+        }
+
       />
+      {
+        (rowOrigin.split(',').length ==1 || rowOrigin.split(',')[1].length==0 || isNaN(rowOrigin.split(',')[0]))  && <p>Ingrese formato correcto</p>
+
+
+      }
+      <p ></p>
       <br />
-      <label>Name:</label>
+      <label>Coordenada de destino</label>
       <br />
       <input
-        name='name'
+        name='rowDestiny'
         type='text'
-        value={name}
-        onChange={e => setName(e.target.value)}
+        value={rowDestiny}
+        onChange={e => {
+          setrowDestiny(e.target.value)
+          if (e.target.value.split(',').length >1 && e.target.value.split(',')[1].length>0 && !isNaN(e.target.value.split(',')[0])) {
+            setSubmitValido2(true)
+          }else{
+            setSubmitValido2(false)
+          }
+        }
+        }
       />
+      {
+        (rowDestiny.split(',').length ==1 || rowDestiny.split(',')[1].length==0 || isNaN(rowOrigin.split(',')[0])) && <p>Ingrese formato correcto</p>
+
+
+      }
       <br />
       <label>Date:</label>
-      <br />
+      {/* <br />
       <input
         name='date'
         type='date'
         value={date}
         onChange={e => setDate(e.target.value)}
       />
-      <br />
+      <br /> */}
       <input
         type='submit'
         value='Add Log'
+        disabled={(!submitValido || !submitValido2)}
       />
+      {
+        !submitValido && <p>Formulario no posible de envíar aún</p>
+      }
     </form>
   )
 }

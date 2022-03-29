@@ -240,7 +240,7 @@ export function Casilla(x, y) {
 
 
 
-export function inicializa() {
+export function inicializa(rowInicio,colInicio,rowFinal,colFinal) {
     iniVariables();
     fetch('http://localhost:4000/api/obstacle/all')
         .then(response => response.json())
@@ -280,9 +280,9 @@ export function inicializa() {
             }
 
             //CREAMOS ORIGEN Y DESTINO DE LA RUTA
-            principio = escenario[0][0];
+            principio = escenario[rowInicio][colInicio];
             //fin = escenario[columnas-1][filas-1];
-            fin = escenario[7][7];
+            fin = escenario[rowFinal][colFinal];
             //INICIALIZAMOS OPENSET
             openSet.push(principio);
 
