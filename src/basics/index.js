@@ -12,8 +12,8 @@ var escenario;  //matriz del nivel
 var anchoT;
 var altoT;
 
-const muro = 'darkred';
-const tierra = 'greenyellow';
+const muro = '#aaf0d1';
+const tierra = '#43b3ae';
 
 
 //RUTA
@@ -138,21 +138,21 @@ export function Casilla2(x, y, tipo) {
 
     //DIBUJA OPENSET
     this.dibujaOS = function () {
-        ctx.fillStyle = '#CCFFCC';
+        ctx.fillStyle = 'mistyrose';
         ctx.fillRect(this.x * anchoT, this.y * altoT, anchoT, altoT);
 
     }
 
     //DIBUJA CLOSEDSET
     this.dibujaCS = function () {
-        ctx.fillStyle = 'cyan';
+        ctx.fillStyle = 'navajowhite';
         ctx.fillRect(this.x * anchoT, this.y * altoT, anchoT, altoT);
     }
 
 
     //DIBUJA CAMINO
     this.dibujaCamino = function () {
-        ctx.fillStyle = 'black';  //cyan
+        ctx.fillStyle = '#002424';  //cyan
         ctx.fillRect(this.x * anchoT, this.y * altoT, anchoT, altoT);
     }
 
@@ -231,7 +231,7 @@ export function Casilla(x, y) {
 
     //DIBUJA PATH
     this.dibujaCamino = function () {
-        ctx.fillStyle = 'black';  //cyan
+        ctx.fillStyle = '#002424';  //cyan
         ctx.fillRect(this.x * anchoT, this.y * altoT, anchoT, altoT);
     }
 
