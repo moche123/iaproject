@@ -242,7 +242,7 @@ export function Casilla(x, y) {
 
 export function inicializa(rowInicio,colInicio,rowFinal,colFinal) {
     iniVariables();
-    fetch('http://localhost:4000/api/obstacle/all')
+    fetch('https://node-iaapp.herokuapp.com/api/obsctacle/all')
         .then(response => response.json())
         .then(data => {
             canvas = document.getElementById('canvas');

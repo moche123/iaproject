@@ -307,7 +307,7 @@ function ChoreForm({ addChoreLog, rowOrigin, rowDestiny, setrowOrigin, setrowDes
         }
       />
       {
-        (rowDestiny.split(',').length == 1 || rowDestiny.split(',')[1].length == 0 || isNaN(rowOrigin.split(',')[0])) && <p>Ingrese formato correcto</p>
+        (rowDestiny.split(',').length == 1 || rowDestiny.split(',')[1].length == 0 || isNaN(rowDestiny.split(',')[0])) && <p>Ingrese formato correcto</p>
 
 
       }
