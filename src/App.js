@@ -24,8 +24,8 @@ function App() {
       <nav className='menu'>
 
         <Link className='link' to="/data">Datos</Link>
-        <Link className='link' to="/mainview">Vista principal</Link>
-        <Link className='link' to="/about">About</Link>
+        <Link className='link' to="/mainview">Vista algoritmo</Link>
+        <Link className='link' to="/about">Nosotros</Link>
 
       </nav>
       <Routes>
@@ -148,11 +148,14 @@ function About() {
   return (
     <>
       <main>
-        <h2>Who are we?</h2>
-        <p>
-          That feels like an existential question, don't you
-          think?
-        </p>
+        <h2>Autores del proyecto</h2>
+        <br />
+        <div>
+          <p>Leysi Aurich Mio</p>
+          <p>Emerson Perales Villanueva</p>
+          <p>Moisés Miguel Flores</p>
+          <p>Kleider Mejía Arrascue</p>
+        </div>
       </main>
 
     </>
