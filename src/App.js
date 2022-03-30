@@ -209,7 +209,7 @@ function ChoreForm({ addChoreLog, rowOrigin, rowDestiny, setrowOrigin, setrowDes
     setClick(true);
     let valido = true;
     e.preventDefault();
-    fetch('http://localhost:4000/api/obstacle/all')
+    fetch('https://node-iaapp.herokuapp.com/api/obsctacle/all')
       .then(response => response.json())
       .then(data => {
         console.log(data)
