@@ -1,12 +1,14 @@
 import React from "react";
 import caricatyra from "../images/caricatura.jpg";
 import peruflag from "../images/peruflag.png";
+import './Card.css'
 // import { FaWhatsapp } from "react-icons/fa";
 // import { FaDribbble } from "react-icons/fa";
 // import { FaLinkedin } from "react-icons/fa";
 // import { FaRegEnvelope } from "react-icons/fa";
 
 function Card({ name, title, light,social: { github, dribbble, twitter, email} }) {
+  let likRef = "https://www.linkedin.com/in/mois%C3%A9s-alvin-miguel-flores-1463001ab/"
   return (
     <div className="w-full">
       {/* <div className={light?"flex flex-col justify-center max-w-sm mx-auto bg-gray-200 shadow-xl rounded-xl p-5"
@@ -51,6 +53,7 @@ function Card({ name, title, light,social: { github, dribbble, twitter, email} }
             {title}
 
           </p>
+                 <a href={likRef} className="linka" target="_blank"><b>LinkedIn</b></a>
           <div className="w-100">
             <div className="flex flex-row justify-center mb-2">
               <img src={peruflag} width="40px" alt="" />

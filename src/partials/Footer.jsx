@@ -20,7 +20,9 @@ function Footer({github,light,language}) {
           { language==='EN'? 'This site was built with React':'Este sito fué construido con React' }
           </p>
           <img src={react} alt="" width="20px" />
+
         </div>
+        <br />
       </div>
      <br />
     </div>
