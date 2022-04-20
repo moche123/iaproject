@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCode, FaDatabase,FaFileArchive } from "react-icons/fa";
+import { FaCode, FaDatabase,FaServicestack } from "react-icons/fa";
 
 const BOOTSTRAP_FOR_SKILL_ICON = "text-4xl mx-auto inline-block";
 const spanishData = {
@@ -31,9 +31,9 @@ const spanishData = {
       skillIcon: <FaDatabase className={BOOTSTRAP_FOR_SKILL_ICON} />,
     },
     {
-      skillName: "Escritorio",
-      skillIcon: <FaFileArchive className={BOOTSTRAP_FOR_SKILL_ICON} />,
-    },
+      skillName: "Backend",
+      skillIcon: <FaServicestack className={BOOTSTRAP_FOR_SKILL_ICON} />,
+    }
   ],
   projects: [
     {
