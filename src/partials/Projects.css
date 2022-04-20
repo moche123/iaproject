@@ -1,0 +1,26 @@
+.content{
+    display: flex;
+    justify-content: center;
+}
+
+.blocka{
+    display: block;
+    text-align: center;
+}
+
+.photoCertified{
+    width: 700px;
+}
+
+.languagesListItem{
+    font-size: large;
+}
+
+.width45{
+    width: 10%;
+}
+
+.alignmentFooter{
+    display: flex;
+    justify-content: center;
+}
