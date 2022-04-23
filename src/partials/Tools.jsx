@@ -22,7 +22,7 @@ const Tools = ({ light, tools, language }) => {
                                         }
 
                     </div>
-                    <div className="w-full rounded-full shaddark">
+                    <div className="w-full rounded-full">
                         <div className={light ? `bg-blue-600   font-medium text-blue-100 text-center p-3 leading-none rounded-full w-100`
                             : "bg-pink-700   font-medium text-white text-bold text-center p-3 leading-none rounded-full w-100"}>
                             <b>{item.name}</b>

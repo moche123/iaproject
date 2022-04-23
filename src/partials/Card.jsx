@@ -7,7 +7,7 @@ import './Card.css'
 // import { FaLinkedin } from "react-icons/fa";
 // import { FaRegEnvelope } from "react-icons/fa";
 
-function Card({ name, title, light,social: { github, dribbble, twitter, email} }) {
+function Card({ name, title, light, social: { github, dribbble, twitter, email } }) {
   let likRef = "https://www.linkedin.com/in/mois%C3%A9s-alvin-miguel-flores-1463001ab/"
   return (
     <div className="w-full">
@@ -37,30 +37,33 @@ function Card({ name, title, light,social: { github, dribbble, twitter, email} }
 
         </div>
       </div> */}
-       <div >
-          <img
-          className={light?"shad w-40 mx-auto shadow-xl rounded-full":"shaddark w-40 mx-auto shadow-xl rounded-full"}
-            src={caricatyra}
-            alt="Profile face"
-          />
-        </div>
-        <div className="text-center mt-5">
-          <p className={light?"text-xl sm:text-2xl text-blue-800 font-semibold":"text-xl sm:text-2xl text-gray-100 font-semibold"}>
-            {name}
-          </p>
-          <p className={light?"text-xs sm:text-base text-blue-700 pt-2 pb-4 px-5 w-auto inline-block"
-                             :"text-xs sm:text-base text-pink-300 pt-2 pb-4 px-5 w-auto inline-block"}>
-            {title}
+      <div >
+        <img
+          className={light ? "shad w-40 mx-auto shadow-xl rounded-full" : "shaddark w-40 mx-auto shadow-xl rounded-full"}
+          src={caricatyra}
+          alt="Profile face"
+        />
+      </div>
+      <div className="text-center mt-5">
+        <p className={light ? "text-xl sm:text-2xl text-blue-800 font-semibold" : "text-xl sm:text-2xl text-gray-100 font-semibold"}>
+          {name}
+        </p>
+        <p className={light ? "text-xs sm:text-base text-blue-700 pt-2 pb-4 px-5 w-auto inline-block"
+          : "text-xs sm:text-base text-pink-300 pt-2 pb-4 px-5 w-auto inline-block"}>
+          {title}
 
-          </p>
-                 <a href={likRef} className="linka" target="_blank"><b>LinkedIn</b></a>
-          <div className="w-100">
-            <div className="flex flex-row justify-center mb-2">
-              <img src={peruflag} width="40px" alt="" />
-            </div>
+
+        </p>
+
+        <div className="w-100">
+          <div className="flex flex-row justify-center mb-2">
+            <img src={peruflag} width="40px" alt="" />
           </div>
-
         </div>
+        <br />
+        <a href={likRef} className={light?"linkaLight":"linkaDark"} target="_blank"><b>LinkedIn</b></a>
+
+      </div>
     </div>
   );
 }

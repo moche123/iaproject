@@ -2,7 +2,19 @@
     /* background-color: aqua; */
     border: 1px solid rgb(113, 249, 253);
 }
-.linka{
+.linkaLight{
     text-decoration: none;
-    color: rgb(71, 114, 163);
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255);
+    background-color: #0a66c2;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+.linkaDark{
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #0a66c2;
+    background-color: rgb(255, 255, 255);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
 }

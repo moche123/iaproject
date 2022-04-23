@@ -15,9 +15,8 @@ const data = {
     title: "About me",
     description:
       `I'm a Software Developer, with 2+ years of experience as a web developer,
-       building apps and mantaining them, I'm from Chiclayo Perú and a passionate learner.
-        I'm also a self-taught developer and every time I looking for new challenges and opportunities to learn new things.
-         Non the less, I love companies, but also as a freelance, because I worked in both. I'm not expert but I always try to do my best. I unfold in: `,
+      building apps and maintaining them, I'm from Chiclayo Peru and a passionate learner.
+       I've always been looking for new challenges and opportunities to learn amazing things,  and always try to do my tasks well. I unfold in: `,
   },
   skills: [
     {
@@ -82,7 +81,7 @@ const data = {
       company: "Freelancer",
       activities: "Databases and APIs building for particular costumers and university projects",
       duration: "October 2019 - Until Now",
-      tools: ["MongoDB", "MySQL", "PostgreSQL", "NodeJs", "Java", "Front-end and Back-end libraries", "Laravel", "Python"]
+      tools: ["MongoDB", "MySQL", "PostgreSQL", "NodeJs", "Java", "Front-end and Back-end libraries", "Laravel", "Python","React","Vue"]
     },
     {
       id: 4,

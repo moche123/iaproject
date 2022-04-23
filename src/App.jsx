@@ -12,6 +12,7 @@ import "aos/dist/aos.css";
 import Experience from "./partials/Experience";
 import Tools from "./partials/Tools";
 import Footer from "./partials/Footer";
+import Snapshots from "./partials/Snapshots";
 
 
 
@@ -58,6 +59,17 @@ function App() {
           experience={language === 'EN' ? data.experience : spanishData.experience}
         />
         <br />
+
+        <Snapshots
+            language={language}
+            light={light}
+            projects={language === 'EN' ? data.projects : spanishData.projects}
+        />
+
+     
+
+        <br />
+
          <Tools
          language={language}
           light={light}

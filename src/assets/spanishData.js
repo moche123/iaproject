@@ -16,9 +16,8 @@ const spanishData = {
     description:
       `
       Soy desarrollador de software, con más de 2 años de experiencia como desarrollador web,
-      construyendo aplicaciones y manteniéndolas, soy de Chiclayo Perú y un aprendiz apasionado.
-       También soy un desarrollador autodidacta y cada vez busco nuevos desafíos y oportunidades para aprender cosas nuevas.
-        No menos importante, me encanta el trabajo en empresas, pero también como freelance, porque trabajé en ambos. No soy un experto, pero siempre trato de hacerlo lo mejor posible. me desempeño en:
+       construyendo aplicaciones y manteniéndolas, soy de Chiclayo Perú y un aprendiz apasionado.
+        Siempre he estado buscando nuevos desafíos y oportunidades para aprender cosas impactantes, y siempre trato de hacer bien mis tareas. me desempeño en:
       `,
   },
   skills: [
@@ -84,7 +83,7 @@ const spanishData = {
       company: "Freelancer",
       activities: "Databases and APIs building for particular costumers and university projects",
       duration: "Obtubre 2019 - Hasta ahora",
-      tools: ["MongoDB", "MySQL", "NodeJs", "Java", "Librerías de Front-end y Back-end","Laravel","Python"]
+      tools: ["MongoDB", "MySQL", "NodeJs", "Java", "Librerías de Front-end y Back-end","Laravel","Python","React","Vue"]
     },
      {
        id:3,
